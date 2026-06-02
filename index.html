@@ -28,6 +28,9 @@
     <div class="spotlight-1"></div>
     <div class="spotlight-2"></div>
     <div class="grid-pattern"></div>
+    <div class="ambient-particle particle-1"></div>
+    <div class="ambient-particle particle-2"></div>
+    <div class="ambient-particle particle-3"></div>
   </div>
 
   <!-- NAV -->
@@ -40,13 +43,17 @@
         <a href="#projects">PROJECTS</a>
         <a href="#contact">CONTACT</a>
       </div>
+      <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle theme">
+        <i class="ti ti-sun" id="theme-toggle-sun"></i>
+        <i class="ti ti-moon" id="theme-toggle-moon"></i>
+      </button>
       <div class="scroll-progress" id="scroll-bar"></div>
     </nav>
   </header>
 
   <!-- HERO -->
   <section id="home" class="hero">
-    <div class="avatar-wrapper">
+    <div class="avatar-wrapper reveal">
       <div class="avatar">
         <!-- Display profile picture directly if it exists; gracefully switches to fallback on error -->
         <img src="Linkedin profile pphoto.png" alt="Balaji S"
@@ -55,20 +62,20 @@
           <i class="ti ti-user"></i>
         </div>
       </div>
-      <div class="pulse-ring"></div>
+      <div class="pulse-ring ring-1"></div>
+      <div class="pulse-ring ring-2"></div>
     </div>
 
-    <div class="hero-text">
+    <div class="hero-text reveal">
       <h1>Balaji S</h1>
       <div class="role">&gt; <span id="typing-box"></span><span class="cursor"></span></div>
       <p>Aspiring AI/ML Engineer passionate about building intelligent systems and turning raw data into real-world
         solutions.</p>
-      <div class="hero-links">
-        <a href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
-        <a href="https://www.linkedin.com/in/balajis2206" target="_blank"><i class="ti ti-brand-linkedin"></i>
-          LinkedIn</a>
-        <a href="https://leetcode.com/u/balajis22" target="_blank"><i class="ti ti-code"></i> LeetCode</a>
-        <a href="mailto:balajisuresh22062005@gmail.com"><i class="ti ti-mail"></i> Email</a>
+      <div class="hero-links reveal-stagger">
+        <a href="https://github.com/balajis22" target="_blank" class="hl-github"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/balajis2206" target="_blank" class="hl-linkedin"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a href="https://leetcode.com/u/balajis22" target="_blank" class="hl-leetcode"><i class="ti ti-code"></i> LeetCode</a>
+        <a href="mailto:balajisuresh22062005@gmail.com" class="hl-email"><i class="ti ti-mail"></i> Email</a>
       </div>
     </div>
   </section>
@@ -76,69 +83,101 @@
   <div class="divider"></div>
 
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" class="reveal">
     <div class="section-title">about me</div>
-    <p class="about-text">
-      I'm a <strong>B.E student</strong> specialising in Artificial Intelligence and Machine Learning at
-      <strong>CMR Institute of Technology, Bengaluru</strong> (2027 batch).
-      I have a strong foundation in <strong>Python, data analysis, and machine learning</strong>, and I enjoy
-      building projects that combine intelligent algorithms with practical applications.
-      I'm also experienced in <strong>full stack web development</strong> with React, Node.js, and MongoDB.
-      Beyond tech, I'm into <strong>e-sports, script writing, and video editing</strong> — always
-      creating something, on screen or off.
-    </p>
+    <div class="about-grid">
+      <div class="about-info">
+        <p class="about-text">
+          I'm a <strong>B.E student</strong> specialising in Artificial Intelligence and Machine Learning at
+          <strong>CMR Institute of Technology, Bengaluru</strong> (2027 batch).
+          I have a strong foundation in <strong>Python, data analysis, and machine learning</strong>, and I enjoy
+          building projects that combine intelligent algorithms with practical applications.
+          I'm also experienced in <strong>full stack web development</strong> with React, Node.js, and MongoDB.
+          Beyond tech, I'm into <strong>e-sports, script writing, and video editing</strong> — always
+          creating something, on screen or off.
+        </p>
+      </div>
+      <div class="about-terminal">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">system_info.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="term-line"><span class="term-prompt">balaji@dev:~$</span> ./show_status.sh</div>
+          <div class="term-line output"><span class="term-key">CURRENT_STATUS:</span> <span class="term-val">Active Student</span></div>
+          <div class="term-line output"><span class="term-key">INSTITUTION:</span> <span class="term-val">CMRIT, Bengaluru</span></div>
+          <div class="term-line output"><span class="term-key">GRAD_YEAR:</span> <span class="term-val">2027 Batch</span></div>
+          <div class="term-line output"><span class="term-key">SPECIALIZATION:</span> <span class="term-val">AI & Machine Learning</span></div>
+          <div class="term-line output"><span class="term-key">CREATIVE:</span> <span class="term-val">Esports, Scripting, Video Editing</span></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <div class="divider"></div>
 
   <!-- SKILLS -->
-  <section id="skills">
+  <section id="skills" class="reveal">
     <div class="section-title">skills</div>
-    <div class="skills-grid">
+    <div class="skills-list reveal-stagger">
 
-      <div class="skill-card">
-        <h4>Languages <i class="ti ti-terminal-2"></i></h4>
+      <div class="skill-category-group">
+        <h4 class="skill-subtitle">Languages <i class="ti ti-terminal-2"></i></h4>
         <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Java</span>
-          <span class="tag">C</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">SQL</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" /> Python</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java" /> Java</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg" alt="C" /> C</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" /> JavaScript</span>
+          <span class="tag">
+            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #38bdf8;"><path d="M12 22c5.523 0 10-2.239 10-5V7c0-2.761-4.477-5-10-5S2 4.239 2 7v10c0 2.761 4.477 5 10 5z"/><path d="M22 7c0 2.761-4.477 5-10 5S2 9.761 2 7"/><path d="M2 12c0 2.761 4.477 5 10 5s10-2.239 10-5"/></svg>
+            SQL
+          </span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <h4>AI / ML <i class="ti ti-brain"></i></h4>
+      <div class="skill-category-group">
+        <h4 class="skill-subtitle">AI / ML <i class="ti ti-brain"></i></h4>
         <div class="skill-tags">
-          <span class="tag">scikit-learn</span>
-          <span class="tag">Pandas</span>
-          <span class="tag">NumPy</span>
-          <span class="tag">Matplotlib</span>
-          <span class="tag">Seaborn</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" alt="scikit-learn" /> scikit-learn</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" alt="Pandas" /> Pandas</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" alt="NumPy" /> NumPy</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib" /> Matplotlib</span>
+          <span class="tag">
+            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #06b6d4;"><path d="M18 20V10M12 20V4M6 20v-6"/><path d="M2 12h2c1-3 2-6 4-6s3 4 5 7c1 2 2 3 4 3h5"/></svg>
+            Seaborn
+          </span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <h4>Web Dev <i class="ti ti-code"></i></h4>
+      <div class="skill-category-group">
+        <h4 class="skill-subtitle">Web Dev <i class="ti ti-code"></i></h4>
         <div class="skill-tags">
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Express</span>
-          <span class="tag">MongoDB</span>
-          <span class="tag">HTML5</span>
-          <span class="tag">CSS3</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" /> React</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" /> Node.js</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" style="filter: invert(1);" /> Express</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB" /> MongoDB</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" /> HTML5</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" /> CSS3</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <h4>Tools <i class="ti ti-settings"></i></h4>
+      <div class="skill-category-group">
+        <h4 class="skill-subtitle">Tools <i class="ti ti-settings"></i></h4>
         <div class="skill-tags">
-          <span class="tag">Git</span>
-          <span class="tag">Jupyter</span>
-          <span class="tag">VS Code</span>
-          <span class="tag">Tableau</span>
-          <span class="tag">Power BI</span>
-          <span class="tag">Google Colab</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" /> Git</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg" alt="Jupyter" /> Jupyter</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" /> VS Code</span>
+          <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tableau/tableau-original.svg" alt="Tableau" /> Tableau</span>
+          <span class="tag">
+            <svg class="tag-icon" viewBox="0 0 24 24" fill="currentColor" style="color: #f2c811;"><rect x="3" y="13" width="4" height="7" rx="1"/><rect x="10" y="8" width="4" height="12" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg>
+            Power BI
+          </span>
+          <span class="tag">
+            <svg class="tag-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #f9ab00;"><path d="M12 12c-2-3-5-4-8-1 3 3 6 2 8 0zm0 0c2 3 5 4 8 1-3-3-6-2-8 0z"/></svg>
+            Google Colab
+          </span>
         </div>
       </div>
 
@@ -148,9 +187,9 @@
   <div class="divider"></div>
 
   <!-- PROJECTS -->
-  <section id="projects">
+  <section id="projects" class="reveal">
     <div class="section-title">projects</div>
-    <div class="projects-grid">
+    <div class="projects-grid reveal-stagger">
 
       <div class="project-card">
         <div>
@@ -234,7 +273,7 @@
   <div class="divider"></div>
 
   <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class="reveal">
     <div class="section-title">contact</div>
     <div class="contact-card">
       <h3>Let's work together</h3>
@@ -253,8 +292,7 @@
   </section>
 
   <footer>
-    built with ♥ by <span>balaji s</span> &nbsp;·&nbsp; 2025
-  </footer>
+    Built With ♥ By <span>Balaji S</span> &nbsp;·&nbsp; 2026 </footer>
 
   <script>
     // Console Typewriter Loop Animation
@@ -300,9 +338,24 @@
       }
     }
 
-    // Init Typewriter on load
+    // Init Typewriter and Inject Hover Particles on load
     document.addEventListener("DOMContentLoaded", () => {
       setTimeout(typeEffect, 600);
+
+      // Inject hover particles into all interactive containers
+      const particleContainers = document.querySelectorAll('.project-card, .skill-category-group, .contact-card');
+      particleContainers.forEach(container => {
+        // Ensure relative positioning and boundary overflow clipping
+        container.style.position = 'relative';
+        container.style.overflow = 'hidden';
+        
+        // Spawn 10 staggered rising particles inside each container
+        for (let i = 1; i <= 10; i++) {
+          const particle = document.createElement('div');
+          particle.className = `antigravity-particle cp-${i}`;
+          container.appendChild(particle);
+        }
+      });
     });
 
     // Email Copy Interactive Micro-Interaction
@@ -348,6 +401,41 @@
       } else {
         scrollBar.style.transform = `scaleX(0)`;
       }
+    });
+
+    // Intersection Observer for scroll reveal animations
+    const revealCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, {
+      root: null,
+      threshold: 0.08,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(element => {
+      revealObserver.observe(element);
+    });
+
+    // Theme Toggle Functionality with persistent state
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    
+    // Check saved preference, fall back to dark mode
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
     });
   </script>
 </body>
