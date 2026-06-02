@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balaji S — AIML Portfolio</title>
+  <meta name="description" content="Balaji S — AIML Student at CMRIT Bengaluru. Python, Machine Learning, Data Science, Full Stack Dev." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #1a1f29;
+      --border: #21262d;
+      --border2: #30363d;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --text-bright: #e6edf3;
+      --accent: #58a6ff;
+      --accent-bg: #0d2137;
+      --accent-border: #1f4a7a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,0.92);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo { font-size: 18px; font-weight: 600; color: var(--accent); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 13px; color: var(--text-muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 80px 2rem; max-width: 900px; margin: 0 auto; }
+
+    .section-title {
+      font-size: 13px; font-weight: 600; letter-spacing: 2px;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .divider { height: 1px; background: var(--border); max-width: 900px; margin: 0 auto; }
+
+    /* HERO */
+    .hero {
+      display: flex; align-items: center; gap: 48px;
+      flex-wrap: wrap;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%; flex-shrink: 0;
+      background: #1a1a2e;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; color: var(--accent);
+    }
+    .hero-text h1 { font-size: 36px; font-weight: 600; color: var(--text-bright); margin-bottom: 8px; }
+    .hero-text .role {
+      font-size: 15px; color: var(--accent); margin-bottom: 12px;
+      font-family: 'Courier New', monospace;
+    }
+    .hero-text p { font-size: 14px; color: var(--text-muted); line-height: 1.8; max-width: 480px; }
+    .hero-links { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .hero-links a {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 6px;
+      font-size: 13px; text-decoration: none;
+      border: 1px solid var(--border2); color: var(--text-muted);
+      background: var(--bg2);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .hero-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ABOUT */
+    .about-text { font-size: 15px; color: var(--text-muted); line-height: 1.9; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px;
+      transition: border-color 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); }
+    .skill-card h4 {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 12px; padding: 3px 9px; border-radius: 4px;
+      background: var(--bg3); color: var(--text-muted);
+      border: 1px solid var(--border2);
+    }
+
+    /* PROJECTS */
+    .projects-grid { display: flex; flex-direction: column; gap: 20px; }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .project-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; margin-bottom: 10px;
+    }
+    .project-header h3 { font-size: 16px; font-weight: 600; color: var(--text-bright); }
+    .project-icon { font-size: 22px; color: var(--accent); flex-shrink: 0; margin-left: 12px; }
+    .project-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 14px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-tag {
+      font-size: 11px; padding: 3px 9px; border-radius: 4px;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1px solid var(--accent-border);
+    }
+    .project-links { display: flex; gap: 12px; margin-top: 16px; }
+    .proj-link {
+      font-size: 12px; color: var(--text-muted); text-decoration: none;
+      display: flex; align-items: center; gap: 5px;
+      transition: color 0.2s;
+    }
+    .proj-link:hover { color: var(--accent); }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 48px 40px;
+      text-align: center;
+    }
+    .contact-card h3 { font-size: 22px; font-weight: 600; color: var(--text-bright); margin-bottom: 12px; }
+    .contact-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.8; }
+    .contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .contact-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 13px; text-decoration: none;
+      border: 1px solid var(--border2); color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-btn i { font-size: 17px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: #484f58;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .hero { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-text h1 { font-size: 28px; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 14px; }
+      section { padding: 60px 1.25rem; }
+      .contact-card { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">balaji.dev</span>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="avatar">
+      <i class="ti ti-user"></i>
+    </div>
+    <div class="hero-text">
+      <h1>Balaji S</h1>
+      <div class="role">&gt; AIML Student @ CMRIT, Bengaluru</div>
+      <p>Aspiring AI/ML Engineer passionate about building intelligent systems and turning raw data into real-world solutions.</p>
+      <div class="hero-links">
+        <a href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a href="https://www.linkedin.com/in/balajis2206" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a href="https://leetcode.com/u/balajis22" target="_blank"><i class="ti ti-code"></i> LeetCode</a>
+        <a href="mailto:balajisuresh22062005@gmail.com"><i class="ti ti-mail"></i> Email</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">about me</div>
+    <p class="about-text">
+      I'm a <strong>second-year B.E student</strong> specialising in Artificial Intelligence and Machine Learning at
+      <strong>CMR Institute of Technology, Bengaluru</strong> (CGPA: 7.31, 2027 batch).
+      I have a strong foundation in <strong>Python, data analysis, and machine learning</strong>, and I enjoy
+      building projects that combine intelligent algorithms with practical applications.
+      I'm also experienced in <strong>full stack web development</strong> with React, Node.js, and MongoDB.
+      Beyond tech, I'm into <strong>e-sports, script writing, and video editing</strong> — always
+      creating something, on screen or off.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-title">skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">C</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>AI / ML</h4>
+        <div class="skill-tags">
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Web Dev</h4>
+        <div class="skill-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Tools</h4>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">Jupyter</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Google Colab</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-title">projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Sales Forecasting using Machine Learning</h3>
+          <i class="ti ti-chart-line project-icon"></i>
+        </div>
+        <p class="project-desc">End-to-end ML pipeline to forecast future sales from historical data. Performed EDA, feature engineering on time-series data, built a Linear Regression model and evaluated with MAE, RMSE and R² metrics. Visualised results with Matplotlib and Seaborn.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">scikit-learn</span>
+          <span class="project-tag">Pandas</span>
+          <span class="project-tag">Matplotlib</span>
+          <span class="project-tag">Machine Learning</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>AudioBook — PDF to Speech</h3>
+          <i class="ti ti-headphones project-icon"></i>
+        </div>
+        <p class="project-desc">Python application that converts PDF text into audio with full playback controls — play, pause, rewind, and forward. Features live text highlighting while reading and audio export for offline use, focused on accessibility.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Text-to-Speech</span>
+          <span class="project-tag">PDF Processing</span>
+          <span class="project-tag">Accessibility</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Amazon Clone</h3>
+          <i class="ti ti-shopping-cart project-icon"></i>
+        </div>
+        <p class="project-desc">Pixel-faithful front-end clone of Amazon.in built with HTML and CSS. Recreated the original layout and UI components with responsive design principles for cross-device compatibility.</p>
+        <div class="project-tags">
+          <span class="project-tag">HTML5</span>
+          <span class="project-tag">CSS3</span>
+          <span class="project-tag">Responsive Design</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+        <div class="project-links">
+          <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">contact</div>
+    <div class="contact-card">
+      <h3>Let's work together</h3>
+      <p>I'm open to internships, collaborations, and opportunities in AI/ML.<br>Feel free to reach out — let's build something together.</p>
+      <div class="contact-links">
+        <a class="contact-btn" href="mailto:balajisuresh22062005@gmail.com"><i class="ti ti-mail"></i> Email me</a>
+        <a class="contact-btn" href="https://www.linkedin.com/in/balajis2206" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a class="contact-btn" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a class="contact-btn" href="https://leetcode.com/u/balajis22" target="_blank"><i class="ti ti-code"></i> LeetCode</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    built with ♥ by balaji s &nbsp;·&nbsp; 2025
+  </footer>
+
+</body>
+</html>
