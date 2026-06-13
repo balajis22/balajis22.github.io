@@ -11,11 +11,11 @@
   <!-- Tabler Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Google Fonts: Cinzel, Cinzel Decorative, Cormorant Garamond, & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
@@ -23,30 +23,96 @@
 
 <body>
 
-  <!-- Ambient BG Spotlight Grid -->
+  <!-- Dragon SVG overlay -->
+  <svg id="dragon-svg"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; display: none;">
+    <defs>
+      <g id="Cabeza" transform="matrix(1, 0, 0, 1, 0, 0)">
+        <path style="fill:var(--dragon-head-bg, #000000);fill-opacity:1"
+          d="M-28.9,-1.1L-28.55 -1.95Q-28.1 -3.1 -27.25 -2.95L-26.7 -2.95Q-27.7 -1.65 -28.9 -1.1M-18.35,-1.8Q-15.1 -10.3 -9.6 -6.05Q-15.1 -6.2 -18.35 -1.8M-18.35,1.1Q-15.1 5.45 -9.6 5.35Q-15.1 9.55 -18.35 1.1M-26.7,2.2L-27.25 2.25Q-28.1 2.4 -28.55 1.2L-28.9 0.35Q-27.7 0.9 -26.7 2.2" />
+        <path style="fill:var(--dragon-accent, #00effc);fill-opacity:1"
+          d="M-21.05,-8.25Q-13.6 -15.95 -1.3 -12.1Q-7.85 -8.5 -5.85 -4.35Q-2.3 -4.85 10.5 0.15Q0 4.35 -5.85 3.65Q-7.85 7.75 -1.25 12.45Q-13.6 15.2 -21.05 7.5Q-29.55 4.05 -30.2 -0.35Q-29.55 -4.8 -21.05 -8.25M-26.7,-2.95L-27.25 -2.95Q-28.1 -3.1 -28.55 -1.95L-28.9 -1.1Q-27.7 -1.65 -26.7 -2.95M-9.6,-6.05Q-15.1 -10.3 -18.35 -1.8Q-15.1 -6.2 -9.6 -6.05M-9.6,5.35Q-15.1 5.45 -18.35 1.1Q-15.1 9.55 -9.6 5.35M-28.9,0.35L-28.55 1.2Q-28.1 2.4 -27.25 2.25L-26.7 2.2Q-27.7 0.9 -28.9 0.35" />
+      </g>
+      <g id="Aletas" transform="matrix(1, 0, 0, 1, 0, 0)">
+        <linearGradient id="LinearGradID_1" gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(0.0935974, 0, 0, 0.188782, -20.55, 0)" spreadMethod="pad" x1="-819.2" y1="0"
+          x2="819.2" y2="0">
+          <stop offset="0" style="stop-color:var(--dragon-accent, #00eeff);stop-opacity:1" />
+          <stop offset="1" style="stop-color:var(--dragon-accent-dark, #002426);stop-opacity:1" />
+        </linearGradient>
+        <path style="fill:url(#LinearGradID_1) "
+          d="M29.75,-36.85Q-17.75 -61.45 -42.05 -40.95L-45.35 -38.35L-53.7 -41.15L-51.15 -44.85Q-34.85 -68.4 21 -57.8Q-32.2 -72.1 -50.25 -50Q-53.85 -45.65 -56.05 -41.95L-64.7 -43.35L-60.6 -50.3Q-45.9 -75.55 5.1 -79.35Q-2.2 -79.8 -9.45 -79.15Q-16.2 -78.55 -22.85 -77.15Q-29.85 -75.65 -36.5 -73Q-43.05 -70.4 -48.8 -66.85Q-54.55 -63.35 -56.8 -60.3L-60.5 -55.4Q-62.95 -52.1 -67 -43.55L-70.55 -43.55L-76.35 -42.95Q-74.6 -49.1 -71.85 -54.85Q-68.9 -61.25 -64.8 -67.1Q-60.8 -73 -55.45 -77.55Q-49.9 -82.35 -43.65 -85.85L-30.6 -92.7Q-24.05 -95.95 -17 -98.25Q-63.75 -86.35 -73.65 -57.1Q-75.75 -50.75 -77.45 -42.75Q-82.9 -41.75 -88 -39.65Q-87.65 -46.65 -86.3 -53.05Q-79.8 -89.8 -36.65 -117.2Q-80.65 -94.5 -87.55 -59.55Q-88.65 -54.15 -88.95 -39.4L-89.8 -38.85L-89.95 -40.2Q-92.2 -105.25 -5.6 -130.9Q-78.8 -99.95 -87.45 -40.9Q-83.15 -42.95 -78.45 -43.95Q-70 -101.3 17.65 -103.8Q-56.9 -93.4 -74.5 -44.55L-67.4 -45.45Q-49.1 -94.95 39.25 -75.65Q-36.75 -84.35 -62.25 -44.25L-57.3 -43.6Q-31.65 -86.5 56.15 -46.05Q-20.3 -73.35 -51.35 -41.7L-45.95 -39.75Q-17.85 -71.35 51.85 -24.8Q-8.7 -56.4 -39.75 -37.05Q-28.15 -34.05 -14.25 -24.45Q-8.6 -19.85 -5.8 -16.95Q5.95 -2.4 20 0Q5.95 2.4 -5.8 16.95Q-8.6 19.85 -14.25 24.45Q-28.15 34.05 -39.75 37.05Q-8.7 56.4 51.85 24.8Q-17.85 71.35 -45.95 39.75L-51.35 41.7Q-20.3 73.35 56.15 46.1Q-31.65 86.5 -57.3 43.65L-62.25 44.3Q-36.75 84.35 39.25 75.7Q-49.1 94.95 -67.4 45.5L-74.5 44.6Q-56.9 93.4 17.65 103.85Q-70 101.3 -78.45 43.95Q-83.15 42.95 -87.45 40.9Q-78.8 99.95 -5.6 130.9Q-92.2 105.25 -89.95 40.25L-91.75 39.4Q-98.65 103.8 -27.95 154.65Q-109.7 105 -94.95 36.3L-92.45 27.35Q-93.05 33.9 -92.05 34.75Q-91.1 35.55 -88.95 36.7L-87.95 37Q-83.7 38.25 -79.05 38.8L-77.25 38.95Q-72.55 39.3 -67.5 38.85L-65.45 38.65Q-44.4 36.05 -17.8 19.6Q-9.9 12.8 -15.15 4.4Q-18.15 3.15 -19 0Q-18.15 -3.15 -15.15 -4.4Q-9.9 -12.8 -17.8 -19.6L-17.8 -19.55Q-44.4 -36.05 -65.45 -38.6L-67.5 -38.8Q-72.55 -39.3 -77.25 -38.95L-79.05 -38.75Q-83.7 -38.25 -87.95 -36.95L-88.95 -36.65Q-91.1 -35.55 -92.05 -34.7Q-93.05 -33.9 -92.45 -27.35M-8.6,15.6Q-17.8 23.3 -21.25 24.2Q-28.3 29.9 -39.2 33.3Q-52.45 38.85 -66.6 40.5Q-79.85 42 -92.35 36Q-93.5 35.65 -93.25 31.55L-94.05 36.1Q-96.1 46.05 -96 56.15Q-95.8 70.5 -90.8 84.1Q-86 97.3 -77.9 108.75Q-70.3 119.35 -61.1 128.6Q-65.95 123.1 -70.25 117.25Q-74.6 111.35 -78.45 105.15Q-82.1 99.3 -85 93Q-88.05 86.55 -90.05 79.7Q-92.15 72.5 -93.25 65.1Q-94.4 58.2 -94.1 51.2Q-93.75 44.35 -92.7 37.6L-89.8 38.9L-88.95 39.45Q-88.65 54.15 -87.55 59.55Q-80.65 94.5 -36.65 117.25Q-79.8 89.8 -86.3 53.1Q-87.65 46.65 -88 39.65Q-82.9 41.75 -77.45 42.75Q-75.75 50.75 -73.65 57.15Q-63.75 86.35 -17 98.3Q-24.05 95.95 -30.6 92.75L-43.65 85.9Q-49.9 82.35 -55.45 77.6Q-60.8 73 -64.8 67.15Q-68.9 61.25 -71.85 54.85Q-74.6 49.1 -76.35 42.95L-70.55 43.6L-67 43.6Q-62.95 52.1 -60.5 55.4L-56.8 60.35Q-54.55 63.35 -48.8 66.9Q-43.05 70.4 -36.5 73Q-29.85 75.65 -22.85 77.15Q-16.2 78.55 -9.45 79.15Q-2.2 79.8 5.1 79.35Q-45.9 75.55 -60.6 50.3L-64.7 43.4L-56.05 41.95Q-53.85 45.65 -50.25 50Q-32.2 72.1 21 57.85Q-34.85 68.4 -51.15 44.85L-53.7 41.2L-45.35 38.35L-42.05 40.95Q-17.75 61.45 29.75 36.85Q19.85 40.9 12.75 42.9Q5.95 44.75 -1 46Q-8.35 47.35 -16.2 46.35Q-24.05 45.3 -31.5 43.3Q-38.9 41.25 -42.55 37.05L-34.25 34.05Q-24.55 30.7 -16.75 24.5Q-12.1 20.75 -8.6 15.6" />
+      </g>
+      <g id="Espina" transform="matrix(1, 0, 0, 1, 0, 0)">
+        <linearGradient id="LinearGradID_2" gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(0.0229492, 0, 0, -0.0152893, 0, 0.05)" spreadMethod="pad" x1="-819.2" y1="0"
+          x2="819.2" y2="0">
+          <stop offset="0" style="stop-color:var(--dragon-accent, #00eeff);stop-opacity:1" />
+          <stop offset="1" style="stop-color:var(--dragon-accent-dark, #00454e);stop-opacity:1" />
+        </linearGradient>
+        <path style="fill:url(#LinearGradID_2) "
+          d="M-18.8,0Q-17.85 -5.7 -12.3 -9.6Q-11.2 -5.35 -6.5 -8.25L-6.45 -8.2L-6.2 -8.3Q1.25 -16.25 6.65 -12.4Q0.05 -12.55 0 -5.95Q2.7 -2.4 7.75 -4.1Q18 -1.45 18.8 0L-18.8 0" />
+        <linearGradient id="LinearGradID_3" gradientUnits="userSpaceOnUse"
+          gradientTransform="matrix(0.0229492, 0, 0, 0.0152893, 0, -0.05)" spreadMethod="pad" x1="-819.2" y1="0"
+          x2="819.2" y2="0">
+          <stop offset="0" style="stop-color:var(--dragon-accent, #00eeff);stop-opacity:1" />
+          <stop offset="1" style="stop-color:var(--dragon-accent, #00eaff);stop-opacity:1" />
+        </linearGradient>
+        <path style="fill:url(#LinearGradID_3) "
+          d="M18.8,0Q18 1.45 7.75 4.1Q2.7 2.4 0 5.95Q0.05 12.55 6.65 12.4Q1.25 16.25 -6.2 8.35Q-6.35 8.25 -6.45 8.25L-6.5 8.25Q-11.2 5.35 -12.3 9.6Q-17.85 5.7 -18.8 0L18.8 0" />
+      </g>
+    </defs>
+    <g id="dragon-screen" />
+  </svg>
+
+  <!-- Dragon Breath Particle Canvas -->
+  <canvas id="dragon-canvas"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;"></canvas>
+
+  <!-- Ambient BG Spotlight Grid & Particle Canvas -->
   <div class="ambient-bg">
     <div class="spotlight-1"></div>
     <div class="spotlight-2"></div>
     <div class="grid-pattern"></div>
-    <div class="ambient-particle particle-1"></div>
-    <div class="ambient-particle particle-2"></div>
-    <div class="ambient-particle particle-3"></div>
+    <canvas id="bg-particles-canvas"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
   </div>
 
   <!-- NAV -->
   <header>
     <nav>
-      <span class="nav-logo">Balaji.dev</span>
+      <div class="nav-logo-group">
+        <span class="nav-logo">
+          <svg class="nav-dragon-sigil" viewBox="0 0 100 100" fill="currentColor">
+            <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="1" stroke-opacity="0.3"
+              stroke-dasharray="3 3" />
+            <path
+              d="M50,15 C42,25 30,30 20,40 C15,45 10,55 15,65 C18,72 25,75 32,72 C40,68 45,55 50,50 C55,55 60,68 68,72 C75,75 82,72 85,65 C90,55 85,45 80,40 C70,30 58,25 50,15 Z" />
+            <path d="M50,50 C50,65 40,75 30,75 C22,75 22,65 30,60 C38,55 45,65 40,70 C38,72 35,70 35,68" />
+            <path d="M42,28 C38,24 35,24 33,26 C31,28 32,32 35,32 M33,26 C30,26 29,28 30,30" />
+            <path d="M58,28 C62,24 65,24 67,26 C69,28 68,32 65,32 M67,26 C70,26 71,28 70,30" />
+            <path d="M50,15 C50,10 48,8 50,5 C52,8 50,10 50,15 M48,8 C46,8 45,9 47,10" />
+          </svg>
+          Balaji.Dev
+        </span>
+        <span class="nav-motto">The Infinite Well</span>
+      </div>
       <div class="nav-links">
         <a href="#about">ABOUT</a>
         <a href="#skills">SKILLS</a>
         <a href="#projects">PROJECTS</a>
         <a href="#contact">CONTACT</a>
       </div>
-      <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle theme">
-        <i class="ti ti-sun" id="theme-toggle-sun"></i>
-        <i class="ti ti-moon" id="theme-toggle-moon"></i>
-      </button>
+      <div class="nav-controls">
+        <button class="dragon-summon-btn" id="dragon-summon-btn" aria-label="Summon Dragon"
+          title="Summon Dragon Companion">
+          <i class="ti ti-egg"></i>
+        </button>
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle theme">
+          <i class="ti ti-flame" id="theme-toggle-sun"></i>
+          <i class="ti ti-snowflake" id="theme-toggle-moon"></i>
+        </button>
+      </div>
       <div class="scroll-progress" id="scroll-bar"></div>
     </nav>
   </header>
@@ -59,7 +125,16 @@
         <img src="Linkedin profile pphoto.png" alt="Balaji S"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="avatar-fallback" style="display:none;">
-          <i class="ti ti-user"></i>
+          <svg class="avatar-dragon-sigil" viewBox="0 0 100 100" fill="currentColor">
+            <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="1" stroke-opacity="0.2"
+              stroke-dasharray="3 3" />
+            <path
+              d="M50,15 C42,25 30,30 20,40 C15,45 10,55 15,65 C18,72 25,75 32,72 C40,68 45,55 50,50 C55,55 60,68 68,72 C75,75 82,72 85,65 C90,55 85,45 80,40 C70,30 58,25 50,15 Z" />
+            <path d="M50,50 C50,65 40,75 30,75 C22,75 22,65 30,60 C38,55 45,65 40,70 C38,72 35,70 35,68" />
+            <path d="M42,28 C38,24 35,24 33,26 C31,28 32,32 35,32 M33,26 C30,26 29,28 30,30" />
+            <path d="M58,28 C62,24 65,24 67,26 C69,28 68,32 65,32 M67,26 C70,26 71,28 70,30" />
+            <path d="M50,15 C50,10 48,8 50,5 C52,8 50,10 50,15 M48,8 C46,8 45,9 47,10" />
+          </svg>
         </div>
       </div>
       <div class="pulse-ring ring-1"></div>
@@ -87,7 +162,15 @@
 
   <!-- ABOUT -->
   <section id="about" class="reveal">
-    <div class="section-title">about me</div>
+    <div class="section-title">
+      <svg class="section-title-sigil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6,18 L18,18 L18,21 L6,21 Z" />
+        <path d="M5,12 L5,18 M19,12 L19,18" />
+        <path d="M12,4 L12,18 M10,5 L14,17 M14,5 L10,17 M8,7 L16,16 M16,7 L8,16" />
+        <path d="M11,6 L13,6 M9,8 L11,9 M13,9 L15,8 M7,10 L9,11 M15,11 L17,10" stroke-width="1" />
+      </svg>
+      about me
+    </div>
     <div class="about-grid">
       <div class="about-info">
         <p class="about-text">
@@ -130,7 +213,17 @@
 
   <!-- SKILLS -->
   <section id="skills" class="reveal">
-    <div class="section-title">skills</div>
+    <div class="section-title">
+      <svg class="section-title-sigil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M5,19 L19,5" />
+        <path d="M5,19 L3,21" stroke-width="2.5" />
+        <path d="M4,17 L7,20" />
+        <path d="M19,19 L5,5" />
+        <path d="M19,19 L21,21" stroke-width="2.5" />
+        <path d="M20,17 L17,20" />
+      </svg>
+      the arsenal
+    </div>
     <div class="skills-list reveal-stagger">
 
       <div class="skill-category-group">
@@ -246,7 +339,17 @@
 
   <!-- PROJECTS -->
   <section id="projects" class="reveal">
-    <div class="section-title">projects</div>
+    <div class="section-title">
+      <svg class="section-title-sigil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2,13 C5,13 6,17 12,17 C18,17 19,13 22,13 C20,17 17,19 12,19 C7,19 4,17 2,13 Z" fill="currentColor"
+          fill-opacity="0.1" />
+        <path d="M2,13 L1,10 M22,13 L23,10" />
+        <path d="M12,5 L12,17" />
+        <path d="M12,5 C15,7 17,9 17,13 C12,13 12,13 7,13 C7,9 9,7 12,5 Z" fill="currentColor" fill-opacity="0.15" />
+        <path d="M1,21 C3,20 5,22 7,21 C9,20 11,22 13,21 C15,20 17,22 19,21 C21,20 23,22 24,21" />
+      </svg>
+      projects
+    </div>
     <div class="projects-grid reveal-stagger">
 
       <div class="project-card">
@@ -269,7 +372,8 @@
             <span class="project-tag">Machine Learning</span>
           </div>
           <div class="project-links">
-            <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i>
+            <a class="proj-link" href="https://github.com/balajis22/Sales_forcasting.git" target="_blank"><i
+                class="ti ti-brand-github"></i>
               View on GitHub</a>
           </div>
         </div>
@@ -283,9 +387,8 @@
             <i class="ti ti-headphones project-icon"></i>
           </div>
           <p class="project-desc">Python application that converts PDF text into audio with full playback controls —
-            play,
-            pause, rewind, and forward. Features live text highlighting while reading and audio export for offline use,
-            focused on accessibility.</p>
+            play, pause, rewind, and forward. Features live text highlighting while reading and audio export for offline
+            use, focused on accessibility.</p>
         </div>
         <div>
           <div class="project-tags">
@@ -295,7 +398,8 @@
             <span class="project-tag">Accessibility</span>
           </div>
           <div class="project-links">
-            <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i>
+            <a class="proj-link" href="https://github.com/balajis22/Audio_book.git" target="_blank"><i
+                class="ti ti-brand-github"></i>
               View on GitHub</a>
           </div>
         </div>
@@ -319,7 +423,8 @@
             <span class="project-tag">UI/UX</span>
           </div>
           <div class="project-links">
-            <a class="proj-link" href="https://github.com/balajis22" target="_blank"><i class="ti ti-brand-github"></i>
+            <a class="proj-link" href="https://github.com/balajis22/Amazon_clone.git" target="_blank"><i
+                class="ti ti-brand-github"></i>
               View on GitHub</a>
           </div>
         </div>
@@ -332,7 +437,19 @@
 
   <!-- CONTACT -->
   <section id="contact" class="reveal">
-    <div class="section-title">contact</div>
+    <div class="section-title">
+      <svg class="section-title-sigil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <!-- Body of raven -->
+        <path d="M12,14 C11,16 9,18 7,18 C9,17 10,15 11,13 M12,14 C13,16 15,18 17,18 C15,17 14,15 13,13" />
+        <!-- Wings in flight -->
+        <path d="M12,10 C8,6 3,7 2,9 C4,10 7,10 11,12" />
+        <path d="M12,10 C16,6 21,7 22,9 C20,10 17,10 13,12" />
+        <!-- Tail and beak -->
+        <path d="M12,10 L12,19" />
+        <path d="M12,10 L12,5 L11,7 L12,10" />
+      </svg>
+      contact
+    </div>
     <div class="contact-card">
       <h3>Let's work together</h3>
       <p>I'm open to internships, collaborations, and opportunities in AI/ML.<br>Feel free to reach out — let's build
@@ -535,6 +652,413 @@
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     });
+
+    // ==========================================
+    // INTERACTIVE DRAGON COMPANION (OPTION A)
+    // ==========================================
+    const dCanvas = document.getElementById('dragon-canvas');
+    const dCtx = dCanvas.getContext('2d');
+    const summonBtn = document.getElementById('dragon-summon-btn');
+    const dSvg = document.getElementById('dragon-svg');
+    const screen = document.getElementById("dragon-screen");
+
+    const xmlns = "http://www.w3.org/2000/svg";
+    const xlinkns = "http://www.w3.org/1999/xlink";
+
+    let dWidth = dCanvas.width = window.innerWidth;
+    let dHeight = dCanvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      dWidth = dCanvas.width = window.innerWidth;
+      dHeight = dCanvas.height = window.innerHeight;
+      if (dragonActive) {
+        radm = Math.min(pointer.x, pointer.y) - 20;
+      }
+    });
+
+    let dragonActive = false;
+    let mouse = { x: dWidth / 2, y: dHeight / 2 };
+    let isBreathing = false;
+
+    // SVG segment elements trailing parameters
+    const N_segs = 40;
+    const elems = [];
+    const pointer = { x: dWidth / 2, y: dHeight / 2 };
+    let radm = Math.min(pointer.x, pointer.y) - 20;
+    let frm = Math.random();
+    let rad = 0;
+
+    const particles = [];
+
+    // Track mouse/pointer coordinates
+    window.addEventListener('pointermove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      if (dragonActive) {
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        rad = 0;
+      }
+    });
+
+    // Handle touch move for mobile
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+        if (dragonActive) {
+          pointer.x = e.touches[0].clientX;
+          pointer.y = e.touches[0].clientY;
+          rad = 0;
+        }
+      }
+    }, { passive: true });
+
+    // Handle Fire-Breathing Trigger on Clicks
+    window.addEventListener('mousedown', (e) => {
+      if (!dragonActive) return;
+      if (e.target.closest('a, button, input, select, textarea, [role="button"], #theme-toggle-btn, #dragon-summon-btn')) {
+        return;
+      }
+      isBreathing = true;
+    });
+
+    window.addEventListener('mouseup', () => {
+      isBreathing = false;
+    });
+
+    // Handle Touch/Tap Fire-Breathing Trigger
+    window.addEventListener('touchstart', (e) => {
+      if (!dragonActive) return;
+      if (e.target.closest('a, button, input, select, textarea, [role="button"], #theme-toggle-btn, #dragon-summon-btn')) {
+        return;
+      }
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+        pointer.x = e.touches[0].clientX;
+        pointer.y = e.touches[0].clientY;
+        rad = 0;
+      }
+      isBreathing = true;
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isBreathing = false;
+    });
+
+    function summonDragon() {
+      // Clear existing children
+      screen.innerHTML = '';
+      elems.length = 0;
+
+      // Initialize segment points
+      for (let i = 0; i < N_segs; i++) {
+        elems[i] = { use: null, x: mouse.x, y: mouse.y };
+      }
+
+      pointer.x = mouse.x;
+      pointer.y = mouse.y;
+      rad = 0;
+      radm = Math.min(pointer.x, pointer.y) - 20;
+
+      const prepend = (use, i) => {
+        const elem = document.createElementNS(xmlns, "use");
+        elems[i].use = elem;
+        elem.setAttributeNS(xlinkns, "xlink:href", "#" + use);
+        screen.prepend(elem);
+      };
+
+      // Create defs segments: Cabeza (head), Aletas (fins/wings), Espina (spine/body)
+      for (let i = 1; i < N_segs; i++) {
+        if (i === 1) prepend("Cabeza", i);
+        else if (i === 8 || i === 14) prepend("Aletas", i);
+        else prepend("Espina", i);
+      }
+
+      dSvg.style.display = 'block';
+    }
+
+    function dispelDragon() {
+      dSvg.style.display = 'none';
+      screen.innerHTML = '';
+      elems.length = 0;
+      isBreathing = false;
+    }
+
+    // Toggle logic for the navigation egg button
+    summonBtn.addEventListener('click', () => {
+      dragonActive = !dragonActive;
+      if (dragonActive) {
+        summonBtn.classList.add('active');
+        summonBtn.innerHTML = '<i class="ti ti-egg-cracked"></i>';
+        summonDragon();
+      } else {
+        summonBtn.classList.remove('active');
+        summonBtn.innerHTML = '<i class="ti ti-egg"></i>';
+        dispelDragon();
+      }
+    });
+
+    // Helper: angle wrapping interpolation
+    function lerpAngle(a, b, step) {
+      let diff = b - a;
+      while (diff < -Math.PI) diff += Math.PI * 2;
+      while (diff > Math.PI) diff -= Math.PI * 2;
+      return a + diff * step;
+    }
+
+    // Main animation loop
+    function animateDragon() {
+      if (dragonActive && elems.length > 0) {
+        let e = elems[0];
+        const ax = (Math.cos(3 * frm) * rad * dWidth) / dHeight;
+        const ay = (Math.sin(4 * frm) * rad * dHeight) / dWidth;
+
+        e.x += (ax + pointer.x - e.x) / 10;
+        e.y += (ay + pointer.y - e.y) / 10;
+
+        const scaleFactor = 0.6;
+        for (let i = 1; i < N_segs; i++) {
+          let e = elems[i];
+          let ep = elems[i - 1];
+          const a = Math.atan2(e.y - ep.y, e.x - ep.x);
+          e.x += (ep.x - e.x + (Math.cos(a) * (100 - i) * scaleFactor) / 5) / 4;
+          e.y += (ep.y - e.y + (Math.sin(a) * (100 - i) * scaleFactor) / 5) / 4;
+          const s = ((162 + 4 * (1 - i)) / 50) * scaleFactor;
+
+          if (e.use) {
+            e.use.setAttributeNS(
+              null,
+              "transform",
+              `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${(180 / Math.PI) * a}) scale(${s},${s})`
+            );
+          }
+        }
+
+        if (rad < radm) rad++;
+        frm += 0.003;
+
+        if (rad > 60) {
+          pointer.x += (dWidth / 2 - pointer.x) * 0.05;
+          pointer.y += (dHeight / 2 - pointer.y) * 0.05;
+        }
+
+        // --- Canvas Fire-Breathing Overlay rendering ---
+        dCtx.clearRect(0, 0, dWidth, dHeight);
+
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+        // Find head coordinates to emit fire
+        let headElem = elems[1];
+        let neckElem = elems[2];
+        let mouthAngle = Math.atan2(headElem.y - neckElem.y, headElem.x - neckElem.x);
+        let mouthX = headElem.x + Math.cos(mouthAngle) * 35 * scaleFactor;
+        let mouthY = headElem.y + Math.sin(mouthAngle) * 35 * scaleFactor;
+
+        if (isBreathing) {
+          // Spawn particle sparks
+          for (let pIdx = 0; pIdx < 3; pIdx++) {
+            let fireAngle = mouthAngle + (Math.random() - 0.5) * 0.45;
+            let fireSpeed = 6 + Math.random() * 7;
+            particles.push({
+              x: mouthX,
+              y: mouthY,
+              vx: Math.cos(fireAngle) * fireSpeed + (Math.random() - 0.5) * 2,
+              vy: Math.sin(fireAngle) * fireSpeed + (Math.random() - 0.5) * 2,
+              size: 4 + Math.random() * 8,
+              life: 0,
+              maxLife: 25 + Math.random() * 20
+            });
+          }
+        }
+
+        // Draw active breath particles
+        dCtx.save();
+        dCtx.globalCompositeOperation = 'lighter';
+        for (let i = particles.length - 1; i >= 0; i--) {
+          let p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vx *= 0.96;
+          p.vy = p.vy * 0.96 - 0.08;
+          p.life++;
+
+          let ageRatio = p.life / p.maxLife;
+          let alpha = 1 - ageRatio;
+
+          dCtx.beginPath();
+          dCtx.arc(p.x, p.y, p.size * (1 - ageRatio * 0.5), 0, Math.PI * 2);
+
+          let color;
+          if (isLight) {
+            if (ageRatio < 0.25) {
+              color = `rgba(235, 253, 255, ${alpha})`;
+            } else if (ageRatio < 0.65) {
+              color = `rgba(0, 200, 240, ${alpha * 0.85})`;
+            } else {
+              color = `rgba(37, 99, 235, ${alpha * 0.5})`;
+            }
+          } else {
+            if (ageRatio < 0.25) {
+              color = `rgba(255, 250, 200, ${alpha})`;
+            } else if (ageRatio < 0.65) {
+              color = `rgba(249, 115, 22, ${alpha * 0.85})`;
+            } else {
+              color = `rgba(220, 38, 38, ${alpha * 0.5})`;
+            }
+          }
+
+          dCtx.fillStyle = color;
+          dCtx.fill();
+
+          if (p.life >= p.maxLife) {
+            particles.splice(i, 1);
+          }
+        }
+        dCtx.restore();
+      } else {
+        if (particles.length > 0) {
+          dCtx.clearRect(0, 0, dWidth, dHeight);
+          particles.length = 0;
+        }
+      }
+
+      requestAnimationFrame(animateDragon);
+    }
+
+    // Launch the dragon engine loop
+    animateDragon();
+
+    // ==========================================
+    // DYNAMIC BACKGROUND PARTICLES ENGINE (FIRE & ICE DUALITY)
+    // ==========================================
+    const bgCanvas = document.getElementById('bg-particles-canvas');
+    const bgCtx = bgCanvas.getContext('2d');
+
+    let bgWidth = bgCanvas.width = window.innerWidth;
+    let bgHeight = bgCanvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      bgWidth = bgCanvas.width = window.innerWidth;
+      bgHeight = bgCanvas.height = window.innerHeight;
+    });
+
+    const maxBgParticles = 80;
+    const bgParticles = [];
+
+    // Helper: Initialize/Reset a particle depending on active theme
+    function createBgParticle(initFully = false) {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      const p = {
+        x: Math.random() * bgWidth,
+        size: 1 + Math.random() * 2.5,
+        phase: Math.random() * Math.PI * 2,
+        swaySpeed: 0.01 + Math.random() * 0.02,
+        life: 0,
+        maxLife: 150 + Math.random() * 150
+      };
+
+      if (isLight) {
+        // SNOW: drifts down from top
+        p.y = initFully ? Math.random() * bgHeight : -10 - Math.random() * 20;
+        p.vy = 0.5 + Math.random() * 0.8;
+        p.vx = -0.25 + Math.random() * 0.5;
+        p.type = 'snow';
+      } else {
+        // FIRE EMBERS: rises up from bottom (wooden log sparks)
+        p.y = initFully ? Math.random() * bgHeight : bgHeight + 10 + Math.random() * 20;
+        p.vy = -0.8 - Math.random() * 1.2;
+        p.vx = -0.3 + Math.random() * 0.6;
+        p.type = 'ember';
+      }
+
+      return p;
+    }
+
+    // Populate initial particles throughout the screen height so the user doesn't wait
+    for (let i = 0; i < maxBgParticles; i++) {
+      bgParticles.push(createBgParticle(true));
+    }
+
+    function animateBgParticles() {
+      bgCtx.clearRect(0, 0, bgWidth, bgHeight);
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+      // Ensure particles count matches limit
+      while (bgParticles.length < maxBgParticles) {
+        bgParticles.push(createBgParticle(false));
+      }
+
+      // Draw and update particles
+      for (let i = bgParticles.length - 1; i >= 0; i--) {
+        const p = bgParticles[i];
+
+        // If theme switched, recycle particle immediately to the new theme
+        const expectedType = isLight ? 'snow' : 'ember';
+        if (p.type !== expectedType) {
+          bgParticles[i] = createBgParticle(false);
+          continue;
+        }
+
+        // Update positions
+        p.y += p.vy;
+        p.x += p.vx + Math.sin(p.phase) * 0.25;
+        p.phase += p.swaySpeed;
+        p.life++;
+
+        const ageRatio = p.life / p.maxLife;
+        const alpha = 1 - ageRatio;
+
+        // Render based on theme
+        bgCtx.beginPath();
+        if (p.type === 'snow') {
+          // Soft snowflake: fluffy white or ice-cyan circle for visibility
+          bgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          let snowColor = i % 3 === 0
+            ? `rgba(186, 230, 253, ${alpha * 0.85})` // light ice-cyan
+            : `rgba(255, 255, 255, ${alpha * 0.9})`;  // pure white
+          bgCtx.fillStyle = snowColor;
+          bgCtx.fill();
+        } else {
+          // Ember spark: tiny glowing hot ember rising and cooling
+          bgCtx.arc(p.x, p.y, p.size * (1 - ageRatio * 0.3), 0, Math.PI * 2);
+
+          // Heat color shifting: yellow-white -> orange -> glowing red -> fade
+          let emberColor;
+          if (emberColor === undefined) {
+            if (ageRatio < 0.2) {
+              emberColor = `rgba(254, 240, 138, ${alpha * 0.95})`; // Yellow-white
+            } else if (ageRatio < 0.6) {
+              emberColor = `rgba(249, 115, 22, ${alpha * 0.85})`;  // Orange
+            } else {
+              emberColor = `rgba(239, 68, 68, ${alpha * 0.5})`;   // Red ember
+            }
+          }
+
+          bgCtx.fillStyle = emberColor;
+
+          // Micro flicker effect for ember realism
+          if (Math.random() > 0.08) {
+            bgCtx.fill();
+          }
+        }
+
+        // Recycle if out of bounds or dead
+        const outOfBounds = p.type === 'snow'
+          ? (p.y > bgHeight + 10 || p.x < -10 || p.x > bgWidth + 10)
+          : (p.y < -10 || p.x < -10 || p.x > bgWidth + 10);
+
+        if (outOfBounds || p.life >= p.maxLife) {
+          bgParticles[i] = createBgParticle(false);
+        }
+      }
+
+      requestAnimationFrame(animateBgParticles);
+    }
+
+    animateBgParticles();
   </script>
 </body>
 
