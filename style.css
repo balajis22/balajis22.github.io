@@ -395,6 +395,12 @@ section {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  transition: filter 0.4s ease;
+}
+
+/* In dark (fire) theme, shift the cyan/blue avatar's colors to glowing red/orange */
+[data-theme="dark"] .avatar img {
+  filter: hue-rotate(185deg) saturate(1.8) contrast(1.15);
 }
 
 .avatar-fallback {
@@ -891,15 +897,9 @@ section {
 
 /* PROJECTS */
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-}
-
-@media (min-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .project-card {
@@ -1873,4 +1873,100 @@ footer span {
     transform: translateY(180px) translateX(6px) scale(0.2) rotate(90deg);
     opacity: 0;
   }
+}
+
+/* 9. Page Burn Theme Transition Styles */
+.burn-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+.burn-overlay[data-theme="dark"] {
+  --bg: #080605;
+  --border: rgba(185, 28, 28, 0.15);
+  --accent-cyan: #d4af37;
+  --accent-indigo: #b91c1c;
+}
+
+.burn-overlay[data-theme="light"] {
+  --bg: #c5d2e0;
+  --border: rgba(160, 174, 192, 0.3);
+  --accent-cyan: #00a8cc;
+  --accent-indigo: #407088;
+}
+
+.burn-overlay .spotlight-1 {
+  position: absolute;
+  top: -15%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: floatSpotlight1 25s ease-in-out infinite alternate;
+}
+
+.burn-overlay[data-theme="dark"] .spotlight-1 {
+  background: radial-gradient(circle, rgba(224, 122, 44, 0.07) 0%, rgba(224, 122, 44, 0) 70%);
+}
+
+.burn-overlay[data-theme="light"] .spotlight-1 {
+  background: radial-gradient(circle, rgba(0, 168, 204, 0.07) 0%, rgba(0, 168, 204, 0) 70%);
+  filter: blur(80px) hue-rotate(30deg);
+}
+
+.burn-overlay .spotlight-2 {
+  position: absolute;
+  bottom: -15%;
+  right: -10%;
+  width: 65vw;
+  height: 65vw;
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatSpotlight2 30s ease-in-out infinite alternate;
+}
+
+.burn-overlay[data-theme="dark"] .spotlight-2 {
+  background: radial-gradient(circle, rgba(185, 28, 28, 0.07) 0%, rgba(185, 28, 28, 0) 70%);
+}
+
+.burn-overlay[data-theme="light"] .spotlight-2 {
+  background: radial-gradient(circle, rgba(64, 112, 136, 0.07) 0%, rgba(64, 112, 136, 0) 70%);
+  filter: blur(100px) hue-rotate(-30deg);
+}
+
+.burn-overlay .grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 28px 28px;
+  opacity: 0.9;
+}
+
+.burn-overlay[data-theme="dark"] .grid-pattern {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.015) 1px, transparent 1px);
+}
+
+.burn-overlay[data-theme="light"] .grid-pattern {
+  background-image: radial-gradient(rgba(66, 153, 225, 0.04) 1px, transparent 1px);
+}
+
+.burn-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000000;
+  pointer-events: none;
 }

@@ -122,7 +122,7 @@
     <div class="avatar-wrapper reveal">
       <div class="avatar">
         <!-- Display profile picture directly if it exists; gracefully switches to fallback on error -->
-        <img src="Linkedin profile pphoto.png" alt="Balaji S"
+        <img src="dragon_avatar_ice.png" alt="Balaji S"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="avatar-fallback" style="display:none;">
           <svg class="avatar-dragon-sigil" viewBox="0 0 100 100" fill="currentColor">
@@ -639,18 +639,421 @@
       revealObserver.observe(element);
     });
 
-    // Theme Toggle Functionality with persistent state
+    // Theme Toggle Functionality with persistent state and Page-Burn Transition
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
     // Check saved preference, fall back to dark mode
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    class TransitionParticle {
+      constructor(x, y, theme) {
+        this.x = x;
+        this.y = y;
+        this.theme = theme; // 'dark' (fire) or 'light' (ice)
+        
+        if (this.theme === 'dark') {
+          // Transitioning to Fire (dark theme)
+          const r = Math.random();
+          if (r < 0.22) {
+            this.type = 'smoke';
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = -Math.random() * 2 - 1;
+            this.size = Math.random() * 20 + 10;
+            this.maxLife = Math.random() * 40 + 30;
+            this.color = `rgba(50, 45, 42, ${Math.random() * 0.12 + 0.08})`;
+          } else if (r < 0.38) {
+            this.type = 'ash'; // charred paper pieces
+            this.vx = (Math.random() - 0.6) * 2.5 - 0.3;
+            this.vy = Math.random() * 2 + 0.5; // fall down
+            this.size = Math.random() * 4 + 2.5;
+            this.maxLife = Math.random() * 50 + 30;
+            this.color = `rgba(${Math.floor(Math.random() * 25 + 35)}, ${Math.floor(Math.random() * 25 + 35)}, ${Math.floor(Math.random() * 25 + 35)}, 0.8)`;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.spin = (Math.random() - 0.5) * 0.12;
+          } else if (r < 0.7) {
+            this.type = 'ember';
+            this.vx = (Math.random() - 0.5) * 4;
+            this.vy = -Math.random() * 4 - 2;
+            this.size = Math.random() * 2.2 + 1;
+            this.maxLife = Math.random() * 40 + 20;
+            this.color = Math.random() < 0.5 ? '#ff9f43' : '#ff5252';
+          } else {
+            this.type = 'flame';
+            this.vx = (Math.random() - 0.5) * 3;
+            this.vy = -Math.random() * 5 - 2;
+            this.size = Math.random() * 12 + 8;
+            this.maxLife = Math.random() * 22 + 12;
+            const colors = ['#ff3c00', '#ff6600', '#ff9900', '#ff1a00'];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+          }
+        } else {
+          // Transitioning to Ice (light theme)
+          const r = Math.random();
+          if (r < 0.35) {
+            this.type = 'mist';
+            this.vx = (Math.random() - 0.5) * 1.5;
+            this.vy = Math.random() * 2 - 0.3; // slow drift
+            this.size = Math.random() * 20 + 10;
+            this.maxLife = Math.random() * 50 + 30;
+            this.color = `rgba(224, 242, 254, ${Math.random() * 0.14 + 0.06})`;
+          } else if (r < 0.55) {
+            this.type = 'shiver'; // ice shards falling
+            this.vx = (Math.random() - 0.55) * 1.5;
+            this.vy = Math.random() * 2.5 + 0.5; // fall down
+            this.size = Math.random() * 3 + 1.5;
+            this.maxLife = Math.random() * 40 + 25;
+            this.color = 'rgba(186, 230, 253, 0.7)';
+            this.rotation = Math.random() * Math.PI * 2;
+            this.spin = (Math.random() - 0.5) * 0.06;
+          } else {
+            this.type = 'sparkle';
+            this.vx = (Math.random() - 0.5) * 3;
+            this.vy = -Math.random() * 2.5 + 0.5;
+            this.size = Math.random() * 3.5 + 0.8;
+            this.maxLife = Math.random() * 30 + 15;
+            const colors = ['#a5f3fc', '#38bdf8', '#ffffff', '#e0f2fe'];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+          }
+        }
+        
+        this.life = this.maxLife;
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life--;
+        
+        if (this.theme === 'dark') {
+          if (this.type === 'flame') {
+            this.size = Math.max(0, this.size - 0.35);
+            this.vx += (Math.random() - 0.5) * 0.2;
+          } else if (this.type === 'smoke') {
+            this.size += 0.28;
+          } else if (this.type === 'ember') {
+            this.vx += Math.sin(this.life * 0.15) * 0.25;
+          } else if (this.type === 'ash') {
+            this.rotation += this.spin;
+            this.vx += Math.sin(this.life * 0.08) * 0.12;
+          }
+        } else {
+          if (this.type === 'mist') {
+            this.size += 0.24;
+          } else if (this.type === 'shiver') {
+            this.rotation += this.spin;
+            this.vx += Math.sin(this.life * 0.05) * 0.08;
+          } else if (this.type === 'sparkle') {
+            this.vx += Math.sin(this.life * 0.2) * 0.2;
+          }
+        }
+      }
+      
+      draw(ctx) {
+        if (this.life <= 0) return;
+        
+        ctx.save();
+        const alpha = this.life / this.maxLife;
+        
+        ctx.globalAlpha = alpha;
+        
+        if (this.type === 'flame' || this.type === 'mist' || this.type === 'smoke') {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        } else if (this.type === 'ember') {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 159, 67, 0.35)';
+          ctx.fill();
+          
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+        } else if (this.type === 'ash' || this.type === 'shiver') {
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.fillStyle = this.color;
+          
+          if (this.type === 'ash') {
+            ctx.beginPath();
+            ctx.moveTo(-this.size/2, -this.size/2);
+            ctx.lineTo(this.size/2, -this.size/2);
+            ctx.lineTo(this.size/2, this.size/2);
+            ctx.lineTo(-this.size/2, this.size/2);
+            ctx.closePath();
+            ctx.fill();
+          } else {
+            ctx.beginPath();
+            ctx.moveTo(0, -this.size);
+            ctx.lineTo(this.size/2.5, 0);
+            ctx.lineTo(0, this.size);
+            ctx.lineTo(-this.size/2.5, 0);
+            ctx.closePath();
+            ctx.fill();
+          }
+        } else if (this.type === 'sparkle') {
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y - this.size * 1.5);
+          ctx.lineTo(this.x + this.size * 1.5, this.y);
+          ctx.lineTo(this.x, this.y + this.size * 1.5);
+          ctx.lineTo(this.x - this.size * 1.5, this.y);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+          ctx.fill();
+          
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y - this.size);
+          ctx.lineTo(this.x + this.size, this.y);
+          ctx.lineTo(this.x, this.y + this.size);
+          ctx.lineTo(this.x - this.size, this.y);
+          ctx.closePath();
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+        }
+        
+        ctx.restore();
+      }
+    }
+
+    let isThemeTransitioning = false;
+
+    function triggerBurnTransition(oldTheme, newTheme) {
+      isThemeTransitioning = true;
+
+      // 1. Create transition overlay (which displays the OLD theme styling)
+      const overlay = document.createElement('div');
+      overlay.id = 'burn-transition-overlay';
+      overlay.className = 'burn-overlay';
+      overlay.setAttribute('data-theme', oldTheme);
+      
+      overlay.innerHTML = `
+        <div class="spotlight-1"></div>
+        <div class="spotlight-2"></div>
+        <div class="grid-pattern"></div>
+      `;
+      document.body.appendChild(overlay);
+
+      // 2. Create the canvas for fire/ice particles & glowing edge
+      const canvas = document.createElement('canvas');
+      canvas.id = 'burn-transition-canvas';
+      canvas.className = 'burn-canvas';
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      const handleResize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', handleResize);
+
+      // 3. Immediately switch page theme to the NEW theme (underneath the overlay)
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+
+      // 4. Animation variables
+      const duration = 1200; // Faster transition is cleaner on low-end
+      const startTime = performance.now();
+      const transitionParticles = [];
+
+      function animate(time) {
+        const elapsed = time - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // C starts at 2.2 and goes down to -0.2 (sweeps top-right to bottom-left)
+        const easedProgress = easeInOutQuad(progress);
+        const C = 2.2 - easedProgress * 2.4; 
+
+        // Calculate intersection points of line x + y = C
+        let pt1 = { x: 0, y: 0 };
+        let pt2 = { x: 0, y: 0 };
+        let activeLine = false;
+
+        if (C > 1.0 && C <= 2.2) {
+          const p = C - 1;
+          pt1 = { x: 1, y: p };
+          pt2 = { x: p, y: 1 };
+          activeLine = true;
+        } else if (C > -0.2 && C <= 1.0) {
+          const p = Math.max(0, C);
+          pt1 = { x: p, y: 0 };
+          pt2 = { x: 0, y: p };
+          activeLine = true;
+        }
+
+        const jaggedPoints = [];
+        if (activeLine) {
+          const x1 = pt1.x * width;
+          const y1 = pt1.y * height;
+          const x2 = pt2.x * width;
+          const y2 = pt2.y * height;
+
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const distance = Math.hypot(dx, dy);
+          
+          // spacing 20 for much fewer segments to optimize layout/clip-path computations!
+          const segments = Math.floor(distance / 20); 
+
+          for (let i = 0; i <= segments; i++) {
+            const t = i / segments;
+            let px = x1 + dx * t;
+            let py = y1 + dy * t;
+
+            const perpAngle = Math.atan2(dy, dx) + Math.PI / 2;
+            
+            // Optimized multi-octave displacement
+            const wave1 = Math.sin(t * Math.PI * 4 + progress * 15) * 18;
+            const wave2 = Math.sin(t * Math.PI * 12 - progress * 30) * 6;
+            const rand = (Math.random() - 0.5) * 3;
+            const displacement = wave1 + wave2 + rand;
+            
+            px += Math.cos(perpAngle) * displacement;
+            py += Math.sin(perpAngle) * displacement;
+
+            jaggedPoints.push({ x: px, y: py });
+          }
+
+          // Spawns fewer particles for low-end device optimization
+          const spawnCount = Math.floor(distance / 48);
+          for (let k = 0; k < spawnCount; k++) {
+            if (transitionParticles.length < 130) { // particle limit is 130
+              const randPt = jaggedPoints[Math.floor(Math.random() * jaggedPoints.length)];
+              if (randPt) {
+                const sx = randPt.x + (Math.random() - 0.5) * 8;
+                const sy = randPt.y + (Math.random() - 0.5) * 8;
+                transitionParticles.push(new TransitionParticle(sx, sy, newTheme));
+              }
+            }
+          }
+        }
+
+        // --- Update CSS Clip Path ---
+        let clipPathStr = 'polygon(0% 0%, 0% 0%, 0% 0%)';
+        if (C > 1.0) {
+          const jaggedStr = jaggedPoints.map(p => `${(p.x / width * 100).toFixed(1)}% ${(p.y / height * 100).toFixed(1)}%`).join(', ');
+          clipPathStr = `polygon(0% 0%, 100% 0%, ${jaggedStr}, 0% 100%)`;
+        } else if (C > 0.0) {
+          const jaggedStr = jaggedPoints.map(p => `${(p.x / width * 100).toFixed(1)}% ${(p.y / height * 100).toFixed(1)}%`).join(', ');
+          clipPathStr = `polygon(0% 0%, ${jaggedStr})`;
+        }
+        overlay.style.clipPath = clipPathStr;
+        overlay.style.webkitClipPath = clipPathStr;
+
+        // --- Canvas Drawing ---
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = transitionParticles.length - 1; i >= 0; i--) {
+          const p = transitionParticles[i];
+          p.update();
+          p.draw(ctx);
+          if (p.life <= 0) {
+            transitionParticles.splice(i, 1);
+          }
+        }
+
+        if (activeLine && jaggedPoints.length > 1) {
+          ctx.save();
+          
+          // 1. Curling paper shadow on unburnt side
+          ctx.beginPath();
+          ctx.moveTo(jaggedPoints[0].x - 8, jaggedPoints[0].y + 8);
+          for (let i = 1; i < jaggedPoints.length; i++) {
+            ctx.lineTo(jaggedPoints[i].x - 8, jaggedPoints[i].y + 8);
+          }
+          ctx.strokeStyle = 'rgba(0, 0, 0, 0.22)'; // simple light shadow, no shadowBlur
+          ctx.lineWidth = 24;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.stroke();
+
+          if (newTheme === 'dark') {
+            // 2. Thick charred border
+            ctx.beginPath();
+            ctx.moveTo(jaggedPoints[0].x, jaggedPoints[0].y);
+            for (let i = 1; i < jaggedPoints.length; i++) {
+              ctx.lineTo(jaggedPoints[i].x, jaggedPoints[i].y);
+            }
+            ctx.strokeStyle = 'rgba(20, 10, 5, 0.85)';
+            ctx.lineWidth = 14;
+            ctx.stroke();
+
+            // 3. Glowing fire layers (using additive composition instead of shadowBlur)
+            ctx.globalCompositeOperation = 'lighter';
+            
+            // Red fire base
+            ctx.strokeStyle = 'rgba(230, 40, 20, 0.35)';
+            ctx.lineWidth = 10;
+            ctx.stroke();
+
+            // Orange fire core
+            ctx.strokeStyle = 'rgba(255, 120, 0, 0.7)';
+            ctx.lineWidth = 5;
+            ctx.stroke();
+
+            // Hot yellow/white core
+            ctx.strokeStyle = '#ffeb3b';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          } else {
+            // 2. Frosty white border
+            ctx.beginPath();
+            ctx.moveTo(jaggedPoints[0].x, jaggedPoints[0].y);
+            for (let i = 1; i < jaggedPoints.length; i++) {
+              ctx.lineTo(jaggedPoints[i].x, jaggedPoints[i].y);
+            }
+            ctx.strokeStyle = 'rgba(224, 242, 254, 0.6)';
+            ctx.lineWidth = 10;
+            ctx.stroke();
+
+            // 3. Glowing icy layers (using additive composition)
+            ctx.globalCompositeOperation = 'lighter';
+
+            // Deep cyan ice glow
+            ctx.strokeStyle = 'rgba(0, 168, 204, 0.4)';
+            ctx.lineWidth = 8;
+            ctx.stroke();
+
+            // Ice cyan core
+            ctx.strokeStyle = 'rgba(0, 239, 252, 0.7)';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // White cold core
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        if (progress < 1 || transitionParticles.length > 0) {
+          requestAnimationFrame(animate);
+        } else {
+          overlay.remove();
+          canvas.remove();
+          window.removeEventListener('resize', handleResize);
+          isThemeTransitioning = false;
+        }
+      }
+
+      function easeInOutQuad(x) {
+        return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (isThemeTransitioning) return;
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      triggerBurnTransition(currentTheme, newTheme);
     });
 
     // ==========================================
